@@ -1,4 +1,3 @@
-
 " URL: http://vim.wikia.com/wiki/Example_vimrc
 " Authors: http://vim.wikia.com/wiki/Vim_on_Freenode
 " Description: A minimal, but feature rich, example .vimrc. If you are a
@@ -172,7 +171,7 @@ set notimeout ttimeout ttimeoutlen=200
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
  
- 
+set clipboard=unnamedplus
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -198,7 +197,10 @@ set expandtab
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
- 
+:map <F6> :NERDTree <CR>
+:map <F7> :tabn <CR> 
+:map <F8> :tabp <CR>
+:map <F9> :tabe
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
