@@ -1,0 +1,83 @@
+# i3blocks config file
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+
+command=/usr/lib/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# Generic media player support
+#
+# This displays "ARTIST - SONG" if a music is playing.
+# Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
+[mediaplayer]
+label=
+instance=spotify
+interval=1
+signal=10
+color=#00FF00
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+[volume]
+label=♪
+instance=Master
+#instance=PCM
+interval=1
+signal=10
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
+[memory]
+label=
+separator=true
+interval=10
+
+#Wifi indicator
+[wifi]
+label=
+instance=wlp4s0
+interval=10
+separator=true
+
+#CPU Load indicator
+[load_average]
+label=
+interval=10
+
+# The battery instance defaults to 0.
+[battery]
+label=
+instance=0
+interval=30
+
+# Date Time
+#
+[time]
+label=
+command=date '+%d/%m/%y %r'
+interval=1
+
+
+# Key indicators
+#
+# Add the following bindings to i3 config file:
+#
+# bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+# bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+#[keyindicator]
+#instance=CAPS
+#interval=once
+#signal=11
+
+#[keyindicator]
+#instance=NUM
+#interval=once
+#signal=11
