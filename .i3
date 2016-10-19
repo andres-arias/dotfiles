@@ -193,6 +193,7 @@ bindsym XF86AudioLowerVolume exec amixer set Master 5%- #decrease sound volume
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle # mute sound
 bindsym $mod+b exec firefox
 bindsym $mod+n exec nautilus
+bindsym $mod+m exec /home/andres/keyboardsw.sh
 
 exec_always compton -f
 exec_always feh --bg-scale /home/andres/Pictures/Wallpapers/sea.jpg
