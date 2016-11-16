@@ -8,11 +8,14 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'vim-colors-solarized'
 
 "Cambia el color scheme
-Plugin 'sonph/onehalf', {'rtp': 'vim/'} 
-
+set background=dark
+colorscheme solarized
+Plugin 'nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'rdnetto/YCM-Generator'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -29,7 +32,6 @@ set wildmenu
 set showcmd
  
 set hlsearch
- 
 
 set ignorecase
 
@@ -91,5 +93,4 @@ autocmd vimenter * NERDTree
 
 set t_Co=256
 set cursorline
-colorscheme onehalfdark
-let g:airline_theme='onehalfdark'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
