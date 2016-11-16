@@ -21,8 +21,8 @@ font pango:Roboto-Light 10
 
 hide_edge_borders both
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
+set $bg-color 	         #002b36
+set $inactive-bg-color   #002b36
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
@@ -38,7 +38,7 @@ set $urgent-bg-color     #E53935
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -80,7 +80,6 @@ bindsym $mod+h split h
 
 # split in vertical orientation
 bindsym $mod+v split v
-
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
@@ -102,33 +101,33 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 set $workspace1 "Firefox "
-set $workspace2 "Main "
-set $workspace3 "Misc "
-set $workspace10 "Music "
+set $workspace2 "Music "
+set $workspace3 "Main "
+set $workspace4 "Misc "
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3 
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace $workspace10
+bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to $workspace1
-bindsym $mod+Shift+2 move container to $workspace2
-bindsym $mod+Shift+3 move container to $workspace3 
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace $workspace1 
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to $workspace10
+bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -183,10 +182,14 @@ bar {
 		inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
 		urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
 		}
+        position top
 }
 
-gaps inner 8
-gaps outer 5
+gaps inner 15
+smart_borders no_gaps
+
+for_window [class="^.*"] border pixel 1
+new_window 1pixel
 
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ #increase sound volume
 bindsym XF86AudioLowerVolume exec amixer set Master 5%- #decrease sound volume
@@ -195,5 +198,14 @@ bindsym $mod+b exec firefox
 bindsym $mod+n exec nautilus
 bindsym $mod+m exec /home/andres/keyboardsw.sh
 
-exec_always compton -f
-exec_always feh --bg-scale /home/andres/Pictures/Wallpapers/sea.jpg
+bindsym $mod+x exec i3lock -i ~/Pictures/Wallpapers/Arch.png -p default -n
+
+#exec_always --no-startup-id compton -cbGf --opacity-rule 90:'class_g *= "Termite"'
+#exec_always compton -b -f -c --config ~/.compton.conf
+exec_always compton -b -f -c -r 3 -l -4 -t -4 --shadow-exclude '_GTK_FRAME_EXTENTS@:c'
+exec_always feh --bg-scale /home/andres/Pictures/Wallpapers/city.jpg
+exec_always synclient PalmDetect=1
+exec_always synclient TapButton1=1
+exec_always synclient TapButton2=3
+exec_always synclient TapButton3=2
+exec_always /etc/xdg/autostart/wicd-tray.desktop
