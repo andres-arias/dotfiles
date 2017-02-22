@@ -8,11 +8,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'vim-colors-solarized'
 
 "Cambia el color scheme
-set background=dark
-colorscheme solarized
 Plugin 'nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
@@ -83,6 +80,7 @@ map Y y$
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
 nnoremap <C-L> :nohl<CR><C-L>
+
 execute pathogen#infect()
 call pathogen#helptags()
 autocmd StdinReadPre * let s:std_in=1
@@ -91,6 +89,13 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd vimenter * NERDTree
 
-set t_Co=256
 set cursorline
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+set background=dark
+colorscheme solarized
+
+" Octave syntax
+augroup filetypedetect
+  au! BufRead,BufNewFile *.m,*.oct set filetype=octave
+augroup END
