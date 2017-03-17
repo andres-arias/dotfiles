@@ -9,10 +9,14 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'git://git.wincent.com/command-t.git'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
-"Cambia el color scheme
 Plugin 'nerdtree'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'rdnetto/YCM-Generator'
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'amix/vim-zenroom'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -99,3 +103,5 @@ colorscheme solarized
 augroup filetypedetect
   au! BufRead,BufNewFile *.m,*.oct set filetype=octave
 augroup END
+
+let g:airline_powerline_fonts=1
