@@ -75,7 +75,6 @@ Plugin 'scrooloose/nerdtree' " Navegador de archivos visual.
 Plugin 'Xuyuanp/nerdtree-git-plugin' " Estados de git dentro del NERDTree
 Plugin 'amix/vim-zenroom' " Zen mode: Elimina distracciones. Leader+V
 Plugin 'townk/vim-autoclose' " Autoclose de parentesis.
-Plugin 'Valloric/YouCompleteMe' " Autocompleta codigo (un dolor de instalar)
 
 " ==== Opciones de NERDTree ====
 
