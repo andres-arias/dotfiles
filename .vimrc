@@ -3,6 +3,7 @@ call pathogen#infect() " Llama Pathogen (administra runtime).
 " ==== Opciones de UI ====
 syntax enable " Activa el syntax hightlight
 set number " Muestra los numeros de linea.
+set ruler " Muestra la regla de limite por linea.
 set showcmd " Muestra los comandos en la barra inferior.
 set cursorline " Destaca la linea en la que se encuentra el cursor.
 :hi CursorLine cterm=NONE ctermbg=DarkGrey ctermfg=white guibg=DarkGrey ctermfg=white " Cambia el cursorline a un hightlight en gris
@@ -11,6 +12,7 @@ set wildmenu " Autocompletacion visual para el menu de comandos.
 set lazyredraw " No molestarse con redraws de pantalla.
 set showmatch " Destaca pares de parentesis o corchetes.
 set confirm " Pregunta si desea guardar al salir.
+colorscheme molokai
 
 " ==== Folding ====
 " Folding es basicamente contraer y expandir bloques de codigo
@@ -27,6 +29,9 @@ set foldmethod=indent " Se basa en indentaciones para hacer el fold.
 set tabstop=4 " Ingresa 4 espacios en TAB en Normal Mode.
 set softtabstop=4 " Ingresa 4 espacios en TAB en Insert Mode.
 set expandtab " Tabs son espacios (Preferible para Python).
+set autoindent " Activa identacion automatica.
+set cindent " Identacion apropiada para lenguajes C-like.
+set shiftwidth=4
 
 " ==== Busqueda ====
 
@@ -69,12 +74,21 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Activa Vundle.
 Plugin 'tpope/vim-fugitive' " Comandos de Git dentro de Vim
 Plugin 'vim-gitgutter' " Muestra diff de Git en la barra izquierda.
-Plugin 'vim-airline/vim-airline' " Barra de estado inferior super fancy.
-Plugin 'vim-airline/vim-airline-themes' " Temas para la airline.
 Plugin 'scrooloose/nerdtree' " Navegador de archivos visual.
 Plugin 'Xuyuanp/nerdtree-git-plugin' " Estados de git dentro del NERDTree
 Plugin 'amix/vim-zenroom' " Zen mode: Elimina distracciones. Leader+V
-Plugin 'townk/vim-autoclose' " Autoclose de parentesis.
+Plugin 'octol/vim-cpp-enhanced-highlight' " Mejor syntax highlight para C++ 
+Plugin 'Valloric/YouCompleteMe' " Autocompletacion de codigo
+Plugin 'tpope/vim-surround' " Rodear automaticamente bloques en comillas, parentesis, etc.
+Plugin 'tomtom/tcomment_vim' " Capacidad para comentar bloques de codigo.
+Plugin 'tomasr/molokai' " Tema Monokai.
+Plugin 'derekwyatt/vim-fswitch' " Cambio facil entre .h y su .cpp correspondiente.
+Plugin 'sbdchd/neoformat' " Da formato de estilo al codigo.
+Plugin 'SirVer/ultisnips' " Engine de snippets.
+Plugin 'honza/vim-snippets' " Snippets adicionales.
+Plugin 'ervandew/supertab' " Mejora TAB para tener YCM y UltiSnips juntos
+Plugin 'vim-syntastic/syntastic' " Syntax checking.
+Plugin 'Townk/vim-autoclose' " Auto cierra parentesis, llaves, strings, etc.
 
 " ==== Opciones de NERDTree ====
 
@@ -83,5 +97,31 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd vimenter * NERDTree
 nnoremap <leader>n :NERDTree<CR> " Abre NERDTree con Leader+n
 
-" ==== Opciones de Airline ====
-let g:airline_powerline_fonts=1 " Usa powerline fonts, entonces se ve bonito.
+" ==== Opciones de YouCompleteMe ====
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_autoclose_preview_window_after_completion = 1 " Cierra ventana de preview al aceptar una sugerencia.
+let g:ycm_autoclose_preview_window_after_insertion = 1 " Cierra la ventana de preview al salir del INSERT mode.
+
+" ==== Opciones de UltiSnips ====
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" ==== Opciones de FSwitch ====
+au! BufEnter *.cpp,*.cc,*.c let b:fswitchdst = 'h,hpp'    | let b:fswitchlocs = '../../include'
+au! BufEnter *.h,*.hpp      let b:fswitchdst = 'cpp,cc,c' | let b:fswitchlocs = 'reg:/include/src/,../src,./'
+
+nmap <silent> <Leader>o :FSHere<cr> " Usa Leader+s para cambiar entre .h y .cpp
+
+" ==== Opciones de Syntastic ====
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
