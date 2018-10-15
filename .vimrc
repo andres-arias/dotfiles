@@ -8,6 +8,12 @@
 " LICENSE: USE THIS IF YOU LIKE, YOU CAN CHANGE
 " WHATEVER YOU WANT, I DON'T CARE.
 " ================================================
+"
+" I keep this file as documented as possible, so I 
+" don't forget what I need, also, if someone else
+" finds this useful, so they know what they're getting.
+"
+" REMEMBER TO INSTALL VUNDLE!
 
 set nocompatible " This is VIm, be iMproved.
 filetype off " Vundle requires this, don't ask me why.
@@ -50,20 +56,21 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim' " Yo dawd, let Vundle manage Vundle 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
-Plugin 'hdima/python-syntax' " Better Python syntax highlighting.
-Plugin 'tomasr/molokai'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tomasr/molokai' " Theme based on Sublime's Monokai.
+Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
+Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
+Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
 Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses bracks and all that stuff.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-" ==== THEMES ====
+" ==== LOOK AND FEEL ====
 colorscheme molokai 
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'wombat'
+let g:airline_powerline_fonts = 1 " So it looks cool, instead of blocky.
+let g:airline_theme = 'wombat' " The theme I like.
+let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 
 " ==== NETRW OPTIONS ====
 " I normally used  the NERDTree plugin, but I want
@@ -71,6 +78,7 @@ let g:airline_theme = 'wombat'
 " I only install a plugin if it's completely necessary.
 " In this case, Vim's built-in netrw can fulfill
 " NERDTree's functionality with a few tweaks.
+" I'm still not completely sold tho.
 let g:netrw_banner = 0 " Disables the useless help banner.
 let g:netrw_liststyle = 3 " Tree view as default.
 let g:netrw_browse_split = 4 " Opens in previous window.
