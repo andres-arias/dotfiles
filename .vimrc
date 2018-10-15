@@ -42,6 +42,7 @@ set softtabstop=4 " Inputs 4 spaces on TAB in Insert Mode.
 set expandtab " Tabs are spaces, fuck the Silicon Valley's scene on this.
 set autoindent " Automatically indents.
 set cindent " Proper C-like indent.
+set shiftwidth=4 " Avoid double indent.
 
 " ==== PLUGINS ====
 " set the runtime path to include Vundle and initialize
@@ -63,3 +64,16 @@ filetype plugin indent on    " required
 colorscheme molokai 
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'wombat'
+
+" ==== NETRW OPTIONS ====
+" I normally used  the NERDTree plugin, but I want
+" to keep my vim as light and snappy as possible, so
+" I only install a plugin if it's completely necessary.
+" In this case, Vim's built-in netrw can fullfill
+" NERDTree's functionality with a few tweaks.
+let g:netrw_banner = 0 " Disables the useless help banner.
+let g:netrw_liststyle = 3 " Tree view as default.
+let g:netrw_browse_split = 4 " Opens in previous window.
+let g:netrw_altv = 1
+let g:netrw_winsize = 25 " Makes netrw window slimmer.
+nnoremap <leader>n :Vex<CR> " Maps leader + n to netrw in vertical split.
