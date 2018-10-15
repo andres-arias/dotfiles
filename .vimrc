@@ -23,7 +23,6 @@ nnoremap <Down>  :echoe "Use j"<CR>
 " Shift+B (beginning) and Shift+E (end)
 nnoremap B ^
 nnoremap E $
-let mapleader="," " Speaking of absurd, comma is more reachable than \.
 
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
@@ -51,10 +50,11 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim' " Yo dawd, let Vundle manage Vundle 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
+Plugin 'hdima/python-syntax' " Better Python syntax highlighting.
 Plugin 'tomasr/molokai'
-Plugin 'fmoralesc/molokayo'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses bracks and all that stuff.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,11 +69,20 @@ let g:airline_theme = 'wombat'
 " I normally used  the NERDTree plugin, but I want
 " to keep my vim as light and snappy as possible, so
 " I only install a plugin if it's completely necessary.
-" In this case, Vim's built-in netrw can fullfill
+" In this case, Vim's built-in netrw can fulfill
 " NERDTree's functionality with a few tweaks.
 let g:netrw_banner = 0 " Disables the useless help banner.
 let g:netrw_liststyle = 3 " Tree view as default.
 let g:netrw_browse_split = 4 " Opens in previous window.
-let g:netrw_altv = 1
+let g:netrw_altv = 1 " Opens in vertical split when something is open.
 let g:netrw_winsize = 25 " Makes netrw window slimmer.
 nnoremap <leader>n :Vex<CR> " Maps leader + n to netrw in vertical split.
+
+" ==== TAG JUMPING AND AUTOCOMPLETE ====
+" Reads a tags file and uses that for autocompletion and file jumping tasks:
+command! MakeTags !ctags -R . 
+
+" ==== SNIPPETS ===
+" Without UltiSnips? Yes, it's possible, ugly, but possible.
+" Inserts a std::cout template:
+nnoremap ,cout :-1read $HOME/.snippets/stdcout<CR>4e2li 
