@@ -19,6 +19,7 @@ set nocompatible " This is VIm, be iMproved.
 filetype off " Vundle requires this, don't ask me why.
 " Disables the arrow keys, forces you to properly
 " move around Vim
+set incsearch " Incremental search, for /
 nnoremap <Left>  :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
@@ -29,17 +30,23 @@ nnoremap <Down>  :echoe "Use j"<CR>
 " Shift+B (beginning) and Shift+E (end)
 nnoremap B ^
 nnoremap E $
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>; A;<Esc>
 
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
 set number " Show line number
 set relativenumber " Set relative number by default.  Easier for counting lines.
-set ruler " Shows limit by line.
+set ruler " Shows the informative ruler at the lower part of the screen.
 set showcmd " Shows commands on the lower bar.
 set cursorline " Higlights the line where the cursor is currently at.
 filetype indent on " Loads indentation options based on file extension.
 set showmatch " Highlights parenthesis pairs.
 set confirm " Asks if you want to save when you exit Vim.
+" Highlights the text when it goes past the 80-line limit:
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 " ==== TABS AND SPACES ====
 set tabstop=4 " Inputs 4 spaces on TAB in Normal Mode.
@@ -90,7 +97,7 @@ let g:netrw_liststyle = 3 " Tree view as default.
 let g:netrw_browse_split = 4 " Opens in previous window.
 let g:netrw_altv = 1 " Opens in vertical split when something is open.
 let g:netrw_winsize = 25 " Makes netrw window slimmer.
-nnoremap <leader>n :Ex<CR> " Maps leader + n to netrw in vertical split.
+nnoremap <leader>n :Vex<CR> " Maps leader + n to netrw in vertical split.
 
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
 " Reads a tags file and uses that for autocompletion and file jumping tasks:
@@ -99,4 +106,4 @@ command! MakeTags !ctags -R .
 " ==== SNIPPETS ===
 " Without UltiSnips? Yes, it's possible, ugly, but possible.
 " Inserts a std::cout template:
-nnoremap ,cout :-1read $HOME/.snippets/stdcout<CR>4e2li 
+nnoremap ,cout o<Esc>:-1read $HOME/.snippets/stdcout<CR>4e2li 
