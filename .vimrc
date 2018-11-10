@@ -24,15 +24,16 @@ nnoremap <Left>  :echoe "Use h"<CR>
 nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
-" Move to beginning/end of line
-" I find 0 and $ absurd, so I prefer
-" using something more memorable like
-" Shift+B (beginning) and Shift+E (end)
-nnoremap B ^
-nnoremap E $
+
+" ==== Leader key custom shortcuts ====
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
+" Adds a semicolon to the end of the line.
 nnoremap <Leader>; A;<Esc>
+" Yanks to the system clipboard.
+nnoremap <Leader>c "+y
+" Opens distraction-free mode.
+nnoremap <Leader>g :Goyo<CR>
 
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
@@ -70,6 +71,7 @@ Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
 Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses bracks and all that stuff.
 Plugin 'vim-syntastic/syntastic' " Linter, I need this for checking syntax now and then.
 Plugin 'tpope/vim-obsession' " Stores sessions between restarts.
+Plugin 'junegunn/goyo.vim' " Distraction-free writing.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -80,24 +82,6 @@ colorscheme molokai
 let g:airline_powerline_fonts = 1 " So it looks cool, instead of blocky.
 let g:airline_theme = 'wombat' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
-
-" ==== SYNTASTIC OPTIONS ====
-" Leader+c keybind to call Syntastic and check for errors
-nnoremap <leader>c :SyntasticCheck<CR>
-
-" ==== NETRW OPTIONS ====
-" I normally used  the NERDTree plugin, but I want
-" to keep my vim as light and snappy as possible, so
-" I only install a plugin if it's completely necessary.
-" In this case, Vim's built-in netrw can fulfill
-" NERDTree's functionality with a few tweaks.
-" I'm still not completely sold tho.
-let g:netrw_banner = 0 " Disables the useless help banner.
-let g:netrw_liststyle = 3 " Tree view as default.
-let g:netrw_browse_split = 4 " Opens in previous window.
-let g:netrw_altv = 1 " Opens in vertical split when something is open.
-let g:netrw_winsize = 25 " Makes netrw window slimmer.
-nnoremap <leader>n :Vex<CR> " Maps leader + n to netrw in vertical split.
 
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
 " Reads a tags file and uses that for autocompletion and file jumping tasks:
