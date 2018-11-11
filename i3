@@ -14,7 +14,7 @@
 # finds this useful, they know what they're getting.
 
 # ==== WORKSPACES ====
-set $ws1 "1"
+set $ws1 ""
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -88,7 +88,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -143,6 +142,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Keyboard volume controls
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ #increase sound volume
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- #decrease sound volume
+bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle # mute sound
 # ==== COLORS AND UI ====
 
 # System wide fonts.
@@ -167,23 +170,8 @@ set $base0D #7cafc2
 set $base0E #ba8baf
 set $base0F #a16946
 
-# Basic bar configuration using the Base16 variables.
-bar {
-    status_command i3status
-
-    colors {
-        background $base00
-        separator  $base01
-        statusline $base04
-
-        # State             Border  BG      Text
-        focused_workspace   $base05 $base0D $base00
-        active_workspace    $base05 $base03 $base00
-        inactive_workspace  $base03 $base01 $base05
-        urgent_workspace    $base08 $base08 $base00
-        binding_mode        $base00 $base0A $base00
-    }
-}
+# Executes Polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Basic color configuration using the Base16 variables for windows and borders.
 # Property Name         Border  BG      Text    Indicator Child Border
