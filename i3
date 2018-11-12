@@ -14,7 +14,7 @@
 # finds this useful, they know what they're getting.
 
 # ==== WORKSPACES ====
-set $ws1 ""
+set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
@@ -83,7 +83,7 @@ bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+m focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -146,6 +146,9 @@ bindsym $mod+r mode "resize"
 bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ #increase sound volume
 bindsym XF86AudioLowerVolume exec amixer set Master 5%- #decrease sound volume
 bindsym XF86AudioMute exec amixer -D pulse set Master 1+ toggle # mute sound
+
+# Keyboard layout switching
+bindsym $mod+space exec (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap es || setxkbmap us
 # ==== COLORS AND UI ====
 
 # System wide fonts.
@@ -190,6 +193,8 @@ gaps outer 0
 # ==== AUTO START PROGRAMS ====
 # Runs the compositor:
 exec_always compton -b -f -c -r 3 -l -4 -t -4 --shadow-exclude '_GTK_FRAME_EXTENTS@:c'
+# Automount USB Devices
+exec_always udiskie &
 # Places the wallpaper:
 exec_always feh --bg-scale /home/andres/Pictures/Wallpapers/nyc.jpg
 # Configures touchpad driver for normal use:
