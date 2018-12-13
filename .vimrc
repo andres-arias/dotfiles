@@ -32,8 +32,6 @@ nnoremap <Leader>o o<Esc>
 nnoremap <Leader>; A;<Esc>
 " Yanks to the system clipboard.
 nnoremap <Leader>c "+y
-" Opens distraction-free mode.
-nnoremap <Leader>g :Goyo<CR>
 
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
@@ -64,23 +62,28 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim' " Yo dawd, let Vundle manage Vundle 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
-Plugin 'tomasr/molokai' " Theme based on Sublime's Monokai.
+Plugin 'chriskempson/base16-vim' " Base15 color schemes.
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
 Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses bracks and all that stuff.
 Plugin 'vim-syntastic/syntastic' " Linter, I need this for checking syntax now and then.
+Plugin 'SirVer/ultisnips' " Snippet engine.
+Plugin 'honza/vim-snippets' " Snippet collection.
 Plugin 'tpope/vim-obsession' " Stores sessions between restarts.
 Plugin 'junegunn/goyo.vim' " Distraction-free writing.
+Plugin 'lervag/vimtex' " LaTeX utilities.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 " ==== LOOK AND FEEL ====
-colorscheme molokai 
-let g:airline_powerline_fonts = 1 " So it looks cool, instead of blocky.
-let g:airline_theme = 'wombat' " The theme I like.
+syntax on
+let base16colorspace=256
+colorscheme base16-default-dark
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'base16' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
@@ -88,6 +91,23 @@ let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 command! MakeTags !ctags -R . 
 
 " ==== SNIPPETS ===
-" Without UltiSnips? Yes, it's possible, ugly, but possible.
-" Inserts a std::cout template:
-nnoremap ,cout o<Esc>:-1read $HOME/.snippets/stdcout<CR>4e2li 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" ==== DOCUMENT AUTHORING ====
+" I'm a huge LaTeX and Markdown nerd, so of course my vim setup will have some
+" LaTeX and Markdown utilities that I use to make my document authoring easier.
+autocmd BufRead,BufNewFile *.md setlocal spell " Auto spell check on MD files.
+autocmd BufRead,BufNewFile *.md setlocal spelllang=en,es " Use both english and spanish.
+autocmd BufRead,BufNewFile *.tex setlocal spell " Auto spell check on MD and TeX files.
+autocmd BufRead,BufNewFile *.tex setlocal spelllang=en,es " Use both english and spanish.
+autocmd FileType gitcommit setlocal spell " Auto spell check for git commit messages.
+autocmd FileType gitcommit setlocal spelllang=en,es " Use both english and spanish.
+let g:tex_flavor='latex' " Use LaTeX instead of ol' TeX.
+set grepprg=grep\ -nH\ $*
+let g:Tex_Folding=0 "I don't like folding.
+set iskeyword+=:
+" Changes the spell mistake highltight to a simple underline 
+hi clear SpellBad
+hi SpellBad cterm=underline
