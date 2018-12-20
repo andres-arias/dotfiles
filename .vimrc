@@ -83,6 +83,7 @@ syntax on
 let base16colorspace=256
 colorscheme base16-default-dark
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 
