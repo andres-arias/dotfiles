@@ -60,19 +60,26 @@ set shiftwidth=4 " Avoid double indent.
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim' " Yo dawd, let Vundle manage Vundle 
+Plugin 'VundleVim/Vundle.vim' " Yo dawg, let Vundle manage Vundle 
 Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
 Plugin 'chriskempson/base16-vim' " Base15 color schemes.
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
-Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses bracks and all that stuff.
+Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses brackets and all that stuff.
 Plugin 'vim-syntastic/syntastic' " Linter, I need this for checking syntax now and then.
-Plugin 'SirVer/ultisnips' " Snippet engine.
-Plugin 'honza/vim-snippets' " Snippet collection.
-Plugin 'tpope/vim-obsession' " Stores sessions between restarts.
-Plugin 'junegunn/goyo.vim' " Distraction-free writing.
+Plugin 'Shougo/neosnippet.vim' " Snippets for efficient coding.
+Plugin 'Shougo/neosnippet-snippets' " Snippet collecion.
+Plugin 'honza/vim-snippets' " Moar snippets.
 Plugin 'lervag/vimtex' " LaTeX utilities.
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async autocompletion.
+else " Support for Vim 8
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -90,21 +97,38 @@ let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
 " Reads a tags file and uses that for autocompletion and file jumping tasks:
 command! MakeTags !ctags -R . 
+" Fast Deoplete enable at startup:
+let g:deoplete#enable_at_startup = 0
+autocmd InsertEnter * call deoplete#enable()
+" Map expression when a tab is hit:
+"           checks if the completion popup is visible
+"           if yes 
+"               then it cycles to next item
+"           else 
+"               if expandable_or_jumpable
+"                   then expands_or_jumps
+"                   else returns a normal TAB
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" ==== SNIPPETS ===
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" Expands or completes the selected snippet/item in the popup menu
+imap <expr><silent><CR> pumvisible() ? deoplete#mappings#close_popup() .
+      \ "\<Plug>(neosnippet_jump_or_expand)" : "\<CR>"
+smap <silent><CR> <Plug>(neosnippet_jump_or_expand)
 
 " ==== DOCUMENT AUTHORING ====
 " I'm a huge LaTeX and Markdown nerd, so of course my vim setup will have some
 " LaTeX and Markdown utilities that I use to make my document authoring easier.
 autocmd BufRead,BufNewFile *.md setlocal spell " Auto spell check on MD files.
-autocmd BufRead,BufNewFile *.md setlocal spelllang=en,es " Use both english and spanish.
+autocmd BufRead,BufNewFile *.md setlocal spelllang=es,en " Use both english and spanish.
 autocmd BufRead,BufNewFile *.tex setlocal spell " Auto spell check on MD and TeX files.
-autocmd BufRead,BufNewFile *.tex setlocal spelllang=en,es " Use both english and spanish.
+autocmd BufRead,BufNewFile *.tex setlocal spelllang=es,en " Use both english and spanish.
 autocmd FileType gitcommit setlocal spell " Auto spell check for git commit messages.
-autocmd FileType gitcommit setlocal spelllang=en,es " Use both english and spanish.
+autocmd FileType gitcommit setlocal spelllang=es,en " Use both english and spanish.
 let g:tex_flavor='latex' " Use LaTeX instead of ol' TeX.
 set grepprg=grep\ -nH\ $*
 let g:Tex_Folding=0 "I don't like folding.
