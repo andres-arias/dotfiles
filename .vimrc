@@ -66,8 +66,7 @@ Plugin 'chriskempson/base16-vim' " Base15 color schemes.
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
-Plugin 'Townk/vim-autoclose' " Shameful I know, autocloses brackets and all that stuff.
-Plugin 'vim-syntastic/syntastic' " Linter, I need this for checking syntax now and then.
+Plugin 'Townk/vim-autoclose' " Autocloses brackets and all that stuff.
 Plugin 'Shougo/neosnippet.vim' " Snippets for efficient coding.
 Plugin 'Shougo/neosnippet-snippets' " Snippet collecion.
 Plugin 'honza/vim-snippets' " Moar snippets.
@@ -100,6 +99,7 @@ command! MakeTags !ctags -R .
 " Fast Deoplete enable at startup:
 let g:deoplete#enable_at_startup = 0
 autocmd InsertEnter * call deoplete#enable()
+
 " Map expression when a tab is hit:
 "           checks if the completion popup is visible
 "           if yes 
@@ -119,6 +119,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 imap <expr><silent><CR> pumvisible() ? deoplete#mappings#close_popup() .
       \ "\<Plug>(neosnippet_jump_or_expand)" : "\<CR>"
 smap <silent><CR> <Plug>(neosnippet_jump_or_expand)
+
+" ==== BUILD AND ERROR CHECKING ====
+autocmd QuickFixCmdPost * copen " Opens quick fix menu after :make
 
 " ==== DOCUMENT AUTHORING ====
 " I'm a huge LaTeX and Markdown nerd, so of course my vim setup will have some
