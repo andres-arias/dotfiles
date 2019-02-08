@@ -26,6 +26,8 @@ nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
 
 " ==== Leader key custom shortcuts ====
+" change the mapleader from \ to ,
+let mapleader=","
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
 " Adds a semicolon to the end of the line.
@@ -61,16 +63,18 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim' " Yo dawg, let Vundle manage Vundle 
-Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
+Plugin 'justinmk/vim-syntax-extra' " Better C syntax highlighting.
 Plugin 'chriskempson/base16-vim' " Base15 color schemes.
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
-Plugin 'Townk/vim-autoclose' " Autocloses brackets and all that stuff.
+Plugin 'Raimondi/delimitMate' " Autocloses brackets and all that stuff.
 Plugin 'Shougo/neosnippet.vim' " Snippets for efficient coding.
 Plugin 'Shougo/neosnippet-snippets' " Snippet collecion.
 Plugin 'honza/vim-snippets' " Moar snippets.
 Plugin 'lervag/vimtex' " LaTeX utilities.
+Plugin 'tpope/vim-surround' " Fast surrounding with brackets and stuff.
+Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async autocompletion.
@@ -89,7 +93,6 @@ syntax on
 let base16colorspace=256
 colorscheme base16-default-dark
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme = 'base16' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 
@@ -119,6 +122,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 imap <expr><silent><CR> pumvisible() ? deoplete#mappings#close_popup() .
       \ "\<Plug>(neosnippet_jump_or_expand)" : "\<CR>"
 smap <silent><CR> <Plug>(neosnippet_jump_or_expand)
+
 
 " ==== BUILD AND ERROR CHECKING ====
 autocmd QuickFixCmdPost * copen " Opens quick fix menu after :make
