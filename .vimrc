@@ -25,16 +25,6 @@ nnoremap <Right> :echoe "Use l"<CR>
 nnoremap <Up>    :echoe "Use k"<CR>
 nnoremap <Down>  :echoe "Use j"<CR>
 
-" ==== Leader key custom shortcuts ====
-" change the mapleader from \ to ,
-let mapleader=","
-" Quickly insert an empty new line without entering insert mode
-nnoremap <Leader>o o<Esc>
-" Adds a semicolon to the end of the line.
-nnoremap <Leader>; A;<Esc>
-" Yanks to the system clipboard.
-nnoremap <Leader>c "+y
-
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
 set number " Show line number
@@ -75,6 +65,9 @@ Plugin 'honza/vim-snippets' " Moar snippets.
 Plugin 'lervag/vimtex' " LaTeX utilities.
 Plugin 'tpope/vim-surround' " Fast surrounding with brackets and stuff.
 Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim' " Fuzzy file finder.
+Plugin 'w0rp/ale' " Async linter.
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async autocompletion.
@@ -126,6 +119,7 @@ smap <silent><CR> <Plug>(neosnippet_jump_or_expand)
 
 " ==== BUILD AND ERROR CHECKING ====
 autocmd QuickFixCmdPost * copen " Opens quick fix menu after :make
+let g:airline#extensions#ale#enabled = 1
 
 " ==== DOCUMENT AUTHORING ====
 " I'm a huge LaTeX and Markdown nerd, so of course my vim setup will have some
@@ -143,3 +137,14 @@ set iskeyword+=:
 " Changes the spell mistake highltight to a simple underline 
 hi clear SpellBad
 hi SpellBad cterm=underline
+
+" ==== Leader key custom shortcuts ====
+" change the mapleader from \ to ,
+let mapleader=","
+" Quickly insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+" Adds a semicolon to the end of the line.
+nnoremap <Leader>; A;<Esc>
+" Yanks to the system clipboard.
+nnoremap <Leader>c "+y
+nnoremap <Leader>s :Files<CR>
