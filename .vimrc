@@ -20,10 +20,6 @@ filetype off " Vundle requires this, don't ask me why.
 " Disables the arrow keys, forces you to properly
 " move around Vim
 set incsearch " Incremental search, for /
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
 
 " ==== UI OPTIONS ====
 set nowrap " First annoyance: line wrapping, instantly disabled.
@@ -68,6 +64,8 @@ Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim' " Fuzzy file finder.
 Plugin 'w0rp/ale' " Async linter.
+Plugin 'benmills/vimux' " Send commands to tmux via vim.
+Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tmux.
 
 if has('nvim')
   Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Async autocompletion.
@@ -138,13 +136,22 @@ set iskeyword+=:
 hi clear SpellBad
 hi SpellBad cterm=underline
 
-" ==== Leader key custom shortcuts ====
+" ==== Custom shortcuts ====
 " change the mapleader from \ to ,
 let mapleader=","
 " Quickly insert an empty new line without entering insert mode
 nnoremap <Leader>o o<Esc>
 " Adds a semicolon to the end of the line.
 nnoremap <Leader>; A;<Esc>
-" Yanks to the system clipboard.
-nnoremap <Leader>c "+y
 nnoremap <Leader>s :Files<CR>
+" Runs a command in a tmux pane.
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+" Re-run last tmux command on a tmux pane.
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+" Zooms tmux pane.
+nnoremap <Leader>vz :VimuxZoomRunner<CR>
+" Easier pane navigation:
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
