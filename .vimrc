@@ -34,6 +34,7 @@ set confirm " Asks if you want to save when you exit Vim.
 " Highlights the text when it goes past the 80-line limit:
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
+set clipboard=unnamedplus " Defaults to the system clipboard
 
 " ==== TABS AND SPACES ====
 set tabstop=4 " Inputs 4 spaces on TAB in Normal Mode.
