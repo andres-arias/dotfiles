@@ -64,7 +64,6 @@ Plugin 'tpope/vim-surround' " Fast surrounding with brackets and stuff.
 Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim' " Fuzzy file finder.
-Plugin 'w0rp/ale' " Async linter.
 Plugin 'benmills/vimux' " Send commands to tmux via vim.
 Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tmux.
 
