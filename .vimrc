@@ -71,7 +71,6 @@ Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tm
 Plugin 'neoclide/coc.nvim', {'tag': '*', 'do': 'yarn install --frozen-lockfile'} " Async autocompletion
 Plugin 'honza/vim-snippets' " Snippets for quick coding.
 Plugin 'Valloric/MatchTagAlways' " Highlights matching HTML tags
-Plugin 'scrooloose/nerdtree' " Tree-style navigation.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -85,35 +84,6 @@ set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'base16' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
-
-" ==== NERDTREE SETTINGS ====
-autocmd vimenter * NERDTree " Opens NERDTree when Vim starts up.
-" Opens NERDTree when vim starts up with no file provided:
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Opens NERDTree when vim starts up with a directory provided:
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
-" Opens NERDTree with Ctrl+N
-map <C-n> :NERDTreeToggle<CR>
-" Closes Vim when NERDTree is the only window open:
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-
-" File highlighting for common file extensions:
-call NERDTreeHighlightFile('md', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('scss', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('ts', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
 
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
 " Reads a tags file and uses that for autocompletion and file jumping tasks:
