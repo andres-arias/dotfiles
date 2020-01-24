@@ -39,13 +39,13 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Loads TypeScript 
 au FileType cpp set iskeyword-=:
 
 " ==== TABS AND SPACES ====
-set tabstop=4 " Inputs 4 spaces on TAB in Normal Mode.
-set softtabstop=4 " Inputs 4 spaces on TAB in Insert Mode.
+set tabstop=2 " Inputs 4 spaces on TAB in Normal Mode.
+set softtabstop=2 " Inputs 4 spaces on TAB in Insert Mode.
 set expandtab " Tabs are spaces, fuck the Silicon Valley's scene on this.
-set shiftwidth=4 " When indenting with '>', use 4 spaces width
+set shiftwidth=2 " When indenting with '>', use 4 spaces width
 set autoindent " Automatically indents.
 set cindent " Proper C-like indent.
-set shiftwidth=4 " Avoid double indent.
+set shiftwidth=2 " Avoid double indent.
 
 " ==== PLUGINS ====
 " set the runtime path to include Vundle and initialize
@@ -58,7 +58,6 @@ Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
 Plugin 'aonemd/kuroi.vim' " The colorscheme I use.
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'pangloss/vim-javascript' " Better JavaScript syntax highlighting.
-Plugin 'leafgarland/typescript-vim' " TypeScript syntax highlighting.
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
 Plugin 'Raimondi/delimitMate' " Autocloses brackets and all that stuff.
@@ -68,10 +67,10 @@ Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
 Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim' " Fuzzy file finder.
-Plugin 'benmills/vimux' " Send commands to tmux via vim.
 Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tmux.
 Plugin 'honza/vim-snippets' " Snippets for quick coding.
 Plugin 'Valloric/MatchTagAlways' " Highlights matching HTML tags
+Plugin 'b4b4r07/vim-hcl' " Syntax highlight for HashiCorp Language.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -222,6 +221,7 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
 " ==== DOCUMENT AUTHORING ====
 " I'm a huge LaTeX and Markdown nerd, so of course my vim setup will have some
 " LaTeX and Markdown utilities that I use to make my document authoring easier.
@@ -229,8 +229,6 @@ autocmd BufRead,BufNewFile *.md setlocal spell " Auto spell check on MD files.
 autocmd BufRead,BufNewFile *.md setlocal spelllang=es,en " Use both english and spanish.
 autocmd BufRead,BufNewFile *.tex setlocal spell " Auto spell check on MD and TeX files.
 autocmd BufRead,BufNewFile *.tex setlocal spelllang=es,en " Use both english and spanish.
-autocmd FileType gitcommit setlocal spell " Auto spell check for git commit messages.
-autocmd FileType gitcommit setlocal spelllang=es,en " Use both english and spanish.
 let g:tex_flavor='latex' " Use LaTeX instead of ol' TeX.
 set grepprg=grep\ -nH\ $*
 let g:Tex_Folding=0 "I don't like folding.
@@ -258,3 +256,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" ==== TERRAFORM CONFIGURATION ====
+au BufReadPost *.tf set syntax=hcl
+au BufReadPost *.tfvars set syntax=hcl
