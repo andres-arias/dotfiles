@@ -71,6 +71,8 @@ Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tm
 Plugin 'honza/vim-snippets' " Snippets for quick coding.
 Plugin 'Valloric/MatchTagAlways' " Highlights matching HTML tags
 Plugin 'b4b4r07/vim-hcl' " Syntax highlight for HashiCorp Language.
+Plugin 'Glench/Vim-Jinja2-Syntax' " Syntax highlight for Jinja2.
+Plugin 'martinda/Jenkinsfile-vim-syntax' " Syntax highlighting for Jenkinsfiles.
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -260,3 +262,9 @@ nnoremap <C-H> <C-W><C-H>
 " ==== TERRAFORM CONFIGURATION ====
 au BufReadPost *.tf set syntax=hcl
 au BufReadPost *.tfvars set syntax=hcl
+
+" ==== ANSIBLE CONFIGURATION ====
+au BufReadPost *.j2 set syntax=jinja
+
+" ==== JENKINS CONFIGURATION ====
+au BufReadPost Jenkinsfile set syntax=groovy
