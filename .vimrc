@@ -37,6 +37,7 @@ call matchadd('ColorColumn', '\%81v', 100)
 set clipboard=unnamedplus " Defaults to the system clipboard
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Loads TypeScript syntax highlighting.
 au FileType cpp set iskeyword-=:
+au FileType rb set iskeyword-=:
 
 " ==== TABS AND SPACES ====
 set tabstop=2 " Inputs 4 spaces on TAB in Normal Mode.
@@ -73,6 +74,8 @@ Plugin 'Valloric/MatchTagAlways' " Highlights matching HTML tags
 Plugin 'b4b4r07/vim-hcl' " Syntax highlight for HashiCorp Language.
 Plugin 'Glench/Vim-Jinja2-Syntax' " Syntax highlight for Jinja2.
 Plugin 'martinda/Jenkinsfile-vim-syntax' " Syntax highlighting for Jenkinsfiles.
+Plugin 'tomasiser/vim-code-dark'
+Plugin 'preservim/nerdtree' " Tree-like navigator
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -84,7 +87,7 @@ let base16colorspace=256
 colorscheme kuroi
 set background=dark
 let g:airline_powerline_fonts = 1
-let g:airline_theme = 'base16' " The theme I like.
+let g:airline_theme = 'codedark' " The theme I like.
 let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 
 " ==== TAG JUMPING AND AUTOCOMPLETE ====
@@ -92,6 +95,8 @@ let g:python_highlight_all = 1 " Enables full Python syntax highlighting.
 command! MakeTags !ctags -R . 
 
 " ==== BUILD AND ERROR CHECKING ====
+
+let g:coc_global_extensions = ['coc-solargraph'] " Enables Ruby Language Server
 autocmd QuickFixCmdPost * copen " Opens quick fix menu after :make
 let g:airline#extensions#ale#enabled = 1
 
