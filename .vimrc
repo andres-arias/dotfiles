@@ -36,8 +36,7 @@ highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 set clipboard=unnamedplus " Defaults to the system clipboard
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Loads TypeScript syntax highlighting.
-au FileType cpp set iskeyword-=:
-au FileType rb set iskeyword-=:
+set iskeyword-=:
 
 " ==== TABS AND SPACES ====
 set tabstop=2 " Inputs 4 spaces on TAB in Normal Mode.
@@ -251,7 +250,10 @@ let mapleader=","
 nnoremap <Leader>o o<Esc>
 " Adds a semicolon to the end of the line.
 nnoremap <Leader>; A;<Esc>
+" Opens the file fuzzy finder
 nnoremap <Leader>s :Files<CR>
+" Opens the ripgrep file finder
+nnoremap <Leader>f :Rg<CR>
 " Runs a command in a tmux pane.
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 " Re-run last tmux command on a tmux pane.
