@@ -39,13 +39,13 @@ autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript " Loads TypeScript 
 set iskeyword-=:
 
 " ==== TABS AND SPACES ====
-set tabstop=2 " Inputs 4 spaces on TAB in Normal Mode.
-set softtabstop=2 " Inputs 4 spaces on TAB in Insert Mode.
+set tabstop=4 " Inputs 4 spaces on TAB in Normal Mode.
+set softtabstop=4 " Inputs 4 spaces on TAB in Insert Mode.
 set expandtab " Tabs are spaces, fuck the Silicon Valley's scene on this.
-set shiftwidth=2 " When indenting with '>', use 4 spaces width
+set shiftwidth=4 " When indenting with '>', use 4 spaces width
 set autoindent " Automatically indents.
 set cindent " Proper C-like indent.
-set shiftwidth=2 " Avoid double indent.
+set shiftwidth=4 " Avoid double indent.
 
 " ==== PLUGINS ====
 " set the runtime path to include Vundle and initialize
@@ -55,26 +55,24 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Yo dawg, let Vundle manage Vundle 
 Plugin 'justinmk/vim-syntax-extra' " Better C syntax highlighting.
 Plugin 'octol/vim-cpp-enhanced-highlight' " Better C++ syntax highlighting.
-Plugin 'aonemd/kuroi.vim' " The colorscheme I use.
+Plugin 'patstockwell/vim-monokai-tasty'
 Plugin 'vim-python/python-syntax' " Better Python syntax highlighting.
 Plugin 'pangloss/vim-javascript' " Better JavaScript syntax highlighting.
+Plugin 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plugin 'vim-airline/vim-airline' " The fresh little bar we all know and love.
 Plugin 'vim-airline/vim-airline-themes' " Themes for the airline.
 Plugin 'Raimondi/delimitMate' " Autocloses brackets and all that stuff.
 Plugin 'tpope/vim-surround' " Fast surrounding with brackets and stuff.
 Plugin 'tpope/vim-repeat' " Repeat commands from plugins.
 Plugin 'scrooloose/nerdcommenter' " Faster block commenting.
-Plugin 'neoclide/coc.nvim', {'branch': 'release'}
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim' " Fuzzy file finder.
 Plugin 'christoomey/vim-tmux-navigator' " Seamless navigation between Vim and Tmux.
 Plugin 'honza/vim-snippets' " Snippets for quick coding.
-Plugin 'Valloric/MatchTagAlways' " Highlights matching HTML tags
-Plugin 'b4b4r07/vim-hcl' " Syntax highlight for HashiCorp Language.
-Plugin 'Glench/Vim-Jinja2-Syntax' " Syntax highlight for Jinja2.
-Plugin 'martinda/Jenkinsfile-vim-syntax' " Syntax highlighting for Jenkinsfiles.
-Plugin 'tomasiser/vim-code-dark'
+Plugin 'tomasiser/vim-code-dark' " Dark theme I like
 Plugin 'preservim/nerdtree' " Tree-like navigator
+Plugin 'rhysd/vim-clang-format' " Autoformat for C-like languages using clang.
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,7 +81,7 @@ filetype plugin indent on    " required
 " ==== LOOK AND FEEL ====
 syntax on
 let base16colorspace=256
-colorscheme kuroi
+colorscheme vim-monokai-tasty
 set background=dark
 let g:airline_powerline_fonts = 1
 let g:airline_theme = 'codedark' " The theme I like.
