@@ -1,0 +1,8 @@
+require("ariasva.remaps")
+require("ariasva.editor")
+require("ariasva.packer")
+require("ariasva.theme")
+require("ariasva.plugins.telescope")
+require("ariasva.plugins.treesitter")
+require("ariasva.plugins.lsp")
+require("ariasva.plugins.nvim-tree")
