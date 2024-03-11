@@ -32,8 +32,8 @@ vim.opt.colorcolumn = "80"
 vim.opt.clipboard="unnamedplus"
 
 vim.api.nvim_exec([[
-  augroup JenkinsfileSyntax
-    autocmd!
-    autocmd BufReadPost Jenkinsfile set syntax=groovy
-  augroup END
+augroup JenkinsfileSyntax
+autocmd!
+autocmd BufReadPost Jenkinsfile set syntax=groovy
+augroup END
 ]], false)
