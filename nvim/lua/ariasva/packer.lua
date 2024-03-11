@@ -12,6 +12,8 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use 'mbbill/undotree'
 	use 'tpope/vim-fugitive'
+	use 'tpope/vim-surround'
+	use 'preservim/nerdcommenter'
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
@@ -28,12 +30,15 @@ return require('packer').startup(function(use)
 	    "williamboman/mason.nvim",
 	    "williamboman/mason-lspconfig.nvim",
 	    "neovim/nvim-lspconfig",
+	    "mfussenegger/nvim-lint",
+	    "mfussenegger/nvim-dap",
+	    "rcarriga/nvim-dap-ui",
+        "mhartington/formatter.nvim"
 	}
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-    use 'preservim/nerdcommenter'
     use 'nvim-tree/nvim-web-devicons'
     use {
         'nvim-tree/nvim-tree.lua',
