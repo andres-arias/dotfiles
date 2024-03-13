@@ -3,7 +3,10 @@ require('lazy').setup({
     'tpope/vim-fugitive',
     'tpope/vim-surround',
     'tpope/vim-repeat',
+    'tommcdo/vim-fubitive',
     'preservim/nerdcommenter',
+    'nvie/vim-flake8',
+    'stevearc/aerial.nvim',
     {'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {}},
     -- LSP and related tools:
     {

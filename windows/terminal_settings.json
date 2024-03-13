@@ -19,7 +19,7 @@
                 "action": "copy",
                 "singleLine": false
             },
-            "keys": "ctrl+c"
+            "keys": "ctrl+shift+c"
         },
         {
             "command": 
@@ -39,7 +39,7 @@
         },
         {
             "command": "paste",
-            "keys": "ctrl+v"
+            "keys": "ctrl+shift+v"
         },
         {
             "command": "find",
