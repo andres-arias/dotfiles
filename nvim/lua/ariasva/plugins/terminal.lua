@@ -1,5 +1,5 @@
 require("toggleterm").setup{
-    shell = "powershell",
+    shell = "pwsh",
     start_in_insert = true
 }
 

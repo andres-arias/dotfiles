@@ -1,3 +1,5 @@
+-- (Python) Activate venv before starting the LSP
+require('venv-lsp').init()
 -- Load VSCode-like Snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -19,6 +21,20 @@ require('mason-lspconfig').setup({
     },
 })
 
+require 'lspconfig'.pyright.setup{
+    settings = {
+    pyright = { autoImportCompletion = true, },
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = 'off'
+            }
+        }
+    }
+}
+
 local has_words_before = function()
     unpack = unpack or table.unpack
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -36,12 +52,12 @@ cmp.setup({
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-e>'] = cmp.mapping.abort(),
-        ['<Enter>'] = cmp.mapping.confirm({select = true}),
+        ['<Enter>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable() 
+                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
                 -- that way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
@@ -63,12 +79,12 @@ cmp.setup({
         end, { "i", "s" }),
     }),
     sources = cmp.config.sources({
-        {name = 'nvim_lsp'},
-        {name = 'nvim_lsp_signature_help'},
-        {name = 'luasnip'},
-        {name = 'path'},
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'luasnip' },
+        { name = 'path' },
     }, {
-        {name = 'buffer'},
+        { name = 'buffer' },
     }),
 })
 
@@ -81,7 +97,7 @@ require('lspconfig').lua_ls.setup({
                 version = 'LuaJIT'
             },
             diagnostics = {
-                globals = {'vim'},
+                globals = { 'vim' },
             },
             workspace = {
                 library = {
@@ -90,4 +106,11 @@ require('lspconfig').lua_ls.setup({
             }
         }
     }
+})
+
+-- Enable linters
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+    callback = function()
+        require("lint").try_lint()
+    end,
 })

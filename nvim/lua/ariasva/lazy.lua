@@ -1,4 +1,5 @@
 require('lazy').setup({
+    'jglasovic/venv-lsp.nvim',
     'mbbill/undotree',
     'tpope/vim-fugitive',
     'tpope/vim-surround',
@@ -8,7 +9,7 @@ require('lazy').setup({
     'nvie/vim-flake8',
     'stevearc/aerial.nvim',
     'akinsho/toggleterm.nvim',
-    {'lukas-reineke/indent-blankline.nvim', main = 'ibl'},
+    { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' },
     -- LSP and related tools:
     {
         'williamboman/mason.nvim',
@@ -30,13 +31,23 @@ require('lazy').setup({
                     'rafamadriz/friendly-snippets',
                 }
             },
+            "jay-babu/mason-nvim-dap.nvim",
             'mfussenegger/nvim-dap',
+            'mfussenegger/nvim-dap-python',
             'rcarriga/nvim-dap-ui',
             'mfussenegger/nvim-lint',
             'mhartington/formatter.nvim',
 
         }
     },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "antoinemadec/FixCursorHold.nvim",
+            'nvim-treesitter/nvim-treesitter'
+        }
+    },
+    'nvim-neotest/neotest-python',
     -- The colorscheme I use:
     'navarasu/onedark.nvim',
     {

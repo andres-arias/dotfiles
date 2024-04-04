@@ -45,6 +45,7 @@ wk.register({
     },
     a = { "<cmd>AerialToggle!<CR>", "Toggle Outline" },
     o = { "o<Esc>", "Add empty line" },
+    h = { "<cmd>WhichKey<cr>", "Show all keybindings" },
     u = { "<cmd>UndotreeToggle<cr>", "Toggle Undo Tree" },
     [";"] = { "A;<Esc>", "Add simicolon at the end of line" },
     -- Global LSP mappings
