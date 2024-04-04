@@ -43,6 +43,16 @@ wk.register({
         f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
         g = { "<cmd>lua Lazygit_toggle()<cr>", "LazyGit" }
     },
+    -- Testing mappings
+    p = {
+        name = "Neotest",
+        p = { "<cmd>Neotest summary toggle<cr>", "Open Test Menu" },
+        r = { "<cmd>Neotest run<cr>", "Run current test" },
+        a = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run all tests" },
+        o = { "<cmd>Neotest output open<cr>", "Open test output for current test" }
+    },
+
+
     a = { "<cmd>AerialToggle!<CR>", "Toggle Outline" },
     o = { "o<Esc>", "Add empty line" },
     h = { "<cmd>WhichKey<cr>", "Show all keybindings" },
@@ -53,7 +63,7 @@ wk.register({
 
 -- LSP-related mappings
 wk.register({
-    ['[d'] = { '<cmd>lua vim.diagnostic.goto_prev()<cr>', "Go to previous diagnostic" },
+    ['[d'] = { '<cmd>lua vim.diagnostic.got.exeo_prev()<cr>', "Go to previous diagnostic" },
     [']d'] = { '<cmd>lua vim.diagnostic.goto_next()<cr>', "Go to next diagnostic" },
     gl = { vim.diagnostic.open_float, "Extend error message" }
 })
