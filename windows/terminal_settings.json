@@ -1,16 +1,6 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema-preview",
-    "copyFormatting": "none",
-    "copyOnSelect": false,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "launchMode": "maximized",
-    "newTabMenu": 
-    [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
     "actions": 
     [
         {
@@ -30,6 +20,10 @@
             "keys": "alt+k"
         },
         {
+            "command": "paste",
+            "keys": "ctrl+shift+v"
+        },
+        {
             "command": 
             {
                 "action": "resizePane",
@@ -38,20 +32,11 @@
             "keys": "alt+shift+k"
         },
         {
-            "command": "paste",
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "command": "find",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "command": 
             {
-                "action": "resizePane",
-                "direction": "left"
+                "action": "scrollDown"
             },
-            "keys": "alt+shift+h"
+            "keys": "ctrl+shift+k"
         },
         {
             "command": 
@@ -65,9 +50,14 @@
         {
             "command": 
             {
-                "action": "scrollDown"
+                "action": "resizePane",
+                "direction": "left"
             },
-            "keys": "ctrl+shift+k"
+            "keys": "alt+shift+h"
+        },
+        {
+            "command": "find",
+            "keys": "ctrl+shift+f"
         },
         {
             "command": 
@@ -88,17 +78,17 @@
         {
             "command": 
             {
-                "action": "scrollUp"
-            },
-            "keys": "ctrl+shift+j"
-        },
-        {
-            "command": 
-            {
                 "action": "moveFocus",
                 "direction": "left"
             },
             "keys": "alt+h"
+        },
+        {
+            "command": 
+            {
+                "action": "scrollUp"
+            },
+            "keys": "ctrl+shift+j"
         },
         {
             "command": 
@@ -115,6 +105,16 @@
                 "direction": "right"
             },
             "keys": "alt+shift+l"
+        }
+    ],
+    "copyFormatting": "none",
+    "copyOnSelect": false,
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "launchMode": "maximized",
+    "newTabMenu": 
+    [
+        {
+            "type": "remainingProfiles"
         }
     ],
     "profiles": 
@@ -157,6 +157,18 @@
                 "hidden": false,
                 "name": "Git Bash",
                 "source": "Git"
+            },
+            {
+                "colorScheme": "Material Darker",
+                "cursorShape": "filledBox",
+                "font": 
+                {
+                    "face": "FiraMono Nerd Font"
+                },
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell 7",
+                "source": "Windows.Terminal.PowershellCore"
             }
         ]
     },
