@@ -1,7 +1,7 @@
 -- (Python) Activate venv before starting the LSP
 require('venv-lsp').init()
--- Load VSCode-like Snippets
-require("luasnip.loaders.from_vscode").lazy_load()
+
+-- GENERAL LSP CONFIGURATION --
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local default_setup = function(server)
@@ -10,10 +10,14 @@ local default_setup = function(server)
     })
 end
 
+-- Mason configuration
+-- Mason is a LSP-related package manager.
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
         'pyright',
+        'ruff_lsp',
+        'rust_analyzer',
         'lua_ls'
     },
     handlers = {
@@ -21,19 +25,82 @@ require('mason-lspconfig').setup({
     },
 })
 
-require 'lspconfig'.pyright.setup{
+-- SPECIFIC LSP CONFIGURATION --
+-- Lua:
+require('lspconfig').lua_ls.setup({
+    capabilities = lsp_capabilities,
     settings = {
-    pyright = { autoImportCompletion = true, },
+        Lua = {
+            runtime = {
+                version = 'LuaJIT'
+            },
+            diagnostics = {
+                globals = { 'vim' },
+            },
+            workspace = {
+                library = {
+                    vim.env.VIMRUNTIME,
+                }
+            }
+        }
+    }
+})
+-- Python:
+-- Ruff for linting and formatting:
+require('lspconfig').ruff_lsp.setup {
+  init_options = {
+    settings = {
+      args = {},
+    }
+  }
+}
+-- Pyright for everything else:
+require('lspconfig').pyright.setup {
+    settings = {
+        pyright = {
+            autoImportCompletion = true,
+            -- Using Ruff's import organizer
+            disableOrganizeImports = true
+        },
         python = {
             analysis = {
-                autoSearchPaths = true,
-                diagnosticMode = 'openFilesOnly',
-                useLibraryCodeForTypes = true,
-                typeCheckingMode = 'off'
+                -- Ignore all files for analysis to exclusively use Ruff for linting
+                ignore = { '*' }
             }
         }
     }
 }
+-- Rust:
+require('lspconfig').rust_analyzer.setup({
+    on_attach = function(client, bufnr)
+        require 'completion'.on_attach(client)
+        vim.lsp.inlay_hint.enable(bufnr)
+    end,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+
+-- SNIPPET CONFIGURATION --
+-- Load VSCode-like Snippets
+require("luasnip.loaders.from_vscode").lazy_load()
+local luasnip = require("luasnip")
+local cmp = require('cmp')
 
 local has_words_before = function()
     unpack = unpack or table.unpack
@@ -41,8 +108,6 @@ local has_words_before = function()
     return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
-local cmp = require('cmp')
-local luasnip = require("luasnip")
 cmp.setup({
     -- Define snippet engine
     snippet = {
@@ -57,8 +122,6 @@ cmp.setup({
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-                -- that way you will only jump inside the snippet region
             elseif luasnip.expand_or_jumpable() then
                 luasnip.expand_or_jump()
             elseif has_words_before() then
@@ -88,26 +151,7 @@ cmp.setup({
     }),
 })
 
--- SPECIFIC LSP CONFIGURATIONS
-require('lspconfig').lua_ls.setup({
-    capabilities = lsp_capabilities,
-    settings = {
-        Lua = {
-            runtime = {
-                version = 'LuaJIT'
-            },
-            diagnostics = {
-                globals = { 'vim' },
-            },
-            workspace = {
-                library = {
-                    vim.env.VIMRUNTIME,
-                }
-            }
-        }
-    }
-})
-
+-- LINTING CONFIGURATION --
 -- Enable linters
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
     callback = function()

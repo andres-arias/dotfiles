@@ -1,12 +1,15 @@
 local wk = require("which-key")
+local nvim_tmux_nav = require('nvim-tmux-navigation')
 local Terminal  = require('toggleterm.terminal').Terminal
 
 vim.g.mapleader = ","
--- Easier sidepane navigation
-vim.keymap.set("n", "<C-J>", "<C-W><C-J>")
-vim.keymap.set("n", "<C-K>", "<C-W><C-K>")
-vim.keymap.set("n", "<C-L>", "<C-W><C-L>")
-vim.keymap.set("n", "<C-H>", "<C-W><C-H>")
+-- Enable navigation between tmux panes
+vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 vim.g.fubitive_domain_pattern = 'bscrd\\.codefactori\\.com'
 vim.g.fubitive_domain_context_path = 'bitbucket'

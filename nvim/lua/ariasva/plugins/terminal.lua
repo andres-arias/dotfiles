@@ -1,5 +1,5 @@
 require("toggleterm").setup{
-    shell = "pwsh",
+    shell = "zsh",
     start_in_insert = true
 }
 

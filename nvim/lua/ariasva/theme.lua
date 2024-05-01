@@ -1,4 +1,2 @@
-require('onedark').setup {
-    style = 'warmer'
-}
-require('onedark').load()
+vim.g.material_style = "darker"
+vim.cmd 'colorscheme material'
