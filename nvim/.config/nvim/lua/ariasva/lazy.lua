@@ -19,12 +19,6 @@ require('lazy').setup({
         config = true
     },
     {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons'
-        }
-    },
-    {
         'nvim-lualine/lualine.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons'
@@ -83,5 +77,6 @@ require('lazy').setup({
         dependencies = {
             'nvim-lua/plenary.nvim'
         }
-    }
+    },
+    'prichrd/netrw.nvim'
 })
