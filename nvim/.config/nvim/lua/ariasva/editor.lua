@@ -37,3 +37,4 @@ autocmd!
 autocmd BufReadPost Jenkinsfile set syntax=groovy
 augroup END
 ]], false)
+require("yaml_nvim").setup({ ft = { "yaml",  "yml" } })

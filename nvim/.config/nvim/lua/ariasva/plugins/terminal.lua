@@ -1,5 +1,11 @@
+if vim.fn.has("win32") then
+    SHELL = "pwsh"
+else
+    SHELL = "zsh"
+end
+
 require("toggleterm").setup{
-    shell = "zsh",
+    shell = SHELL,
     start_in_insert = true
 }
 

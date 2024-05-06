@@ -11,6 +11,7 @@ require('lazy').setup({
     'stevearc/aerial.nvim',
     'akinsho/toggleterm.nvim',
     'alexghergh/nvim-tmux-navigation',
+    'prichrd/netrw.nvim',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' },
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
     {
@@ -23,6 +24,10 @@ require('lazy').setup({
         dependencies = {
             'nvim-tree/nvim-web-devicons'
         }
+    },
+    {
+        'akinsho/bufferline.nvim',
+        dependencies = 'nvim-tree/nvim-web-devicons'
     },
     {
         "folke/which-key.nvim",
@@ -78,5 +83,11 @@ require('lazy').setup({
             'nvim-lua/plenary.nvim'
         }
     },
-    'prichrd/netrw.nvim'
+    {
+        "cuducos/yaml.nvim",
+        ft = { "yaml" }, -- optional
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+    }
 })
