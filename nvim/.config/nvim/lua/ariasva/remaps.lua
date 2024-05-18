@@ -1,6 +1,5 @@
 local wk = require("which-key")
 local nvim_tmux_nav = require('nvim-tmux-navigation')
-local Terminal  = require('toggleterm.terminal').Terminal
 
 vim.g.mapleader = ","
 -- Enable navigation between tmux panes
@@ -11,15 +10,6 @@ vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
 vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
 vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
-vim.g.fubitive_domain_pattern = 'bscrd\\.codefactori\\.com'
-vim.g.fubitive_domain_context_path = 'bitbucket'
-
--- Function to launch lazygit inside a internal terminal
-local lazygit = Terminal:new({cmd = "lazygit", hidden = true, direction = 'float'})
-function Lazygit_toggle()
-  lazygit:toggle()
-end
-
 wk.register({
     -- Telescope mappings
     f = {
@@ -27,7 +17,8 @@ wk.register({
         f = { "<cmd>Telescope find_files<cr>", "Seach file" },
         a = { "<cmd>Telescope aerial<cr>", "Seach outline" },
         s = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-        g = { "<cmd>Telescope git_files<cr>", "Search Git files" }
+        g = { "<cmd>Telescope git_files<cr>", "Search Git files" },
+        b = { "<cmd>Telescope buffers<cr>", "Search open buffers" }
     },
     -- Git mappings
     g = {
@@ -37,27 +28,20 @@ wk.register({
         b = { "<cmd>Git blame<cr>", "git blame" },
         m = { "<cmd>Git mergetool<cr>", "git mergetool" },
     },
-    -- Terminal mappings
-    t = {
-        name = "Toggle Terminal",
-        h = { "<cmd>ToggleTerm direction=horizontal<cr>", "Horizontal" },
-        v = { "<cmd>ToggleTerm direction=vertical size=40<cr>", "Vertical" },
-        t = { "<cmd>ToggleTerm direction=tab<cr>", "Tab" },
-        f = { "<cmd>ToggleTerm direction=float<cr>", "Float" },
-        g = { "<cmd>lua Lazygit_toggle()<cr>", "LazyGit" }
-    },
     -- Testing mappings
-    p = {
+    t = {
         name = "Neotest",
         p = { "<cmd>Neotest summary toggle<cr>", "Open Test Menu" },
         r = { "<cmd>Neotest run<cr>", "Run current test" },
         a = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", "Run all tests" },
         o = { "<cmd>Neotest output open<cr>", "Open test output for current test" }
     },
-
-
-    a = { "<cmd>AerialToggle!<CR>", "Toggle Outline" },
-    o = { "o<Esc>", "Add empty line" },
+    -- Buffer navigation mappings:
+    n = { ":bn<cr>", "Next Buffer" },
+    p = { ":bp<cr>", "Previous Buffer" },
+    d = { ":bd<cr>", "Close Buffer" },
+    --
+    o = { "<cmd>AerialToggle!<CR>", "Toggle Outline" },
     h = { "<cmd>WhichKey<cr>", "Show all keybindings" },
     u = { "<cmd>UndotreeToggle<cr>", "Toggle Undo Tree" },
     [";"] = { "A;<Esc>", "Add simicolon at the end of line" },

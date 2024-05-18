@@ -9,7 +9,6 @@ require('lazy').setup({
     'b3nj5m1n/kommentary',
     'nvie/vim-flake8',
     'stevearc/aerial.nvim',
-    'akinsho/toggleterm.nvim',
     'alexghergh/nvim-tmux-navigation',
     'prichrd/netrw.nvim',
     { 'lukas-reineke/indent-blankline.nvim', main = 'ibl' },
@@ -28,6 +27,10 @@ require('lazy').setup({
     {
         'akinsho/bufferline.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons'
+    },
+    {
+      'stevearc/oil.nvim',
+      dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     {
         "folke/which-key.nvim",

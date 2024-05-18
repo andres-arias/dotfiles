@@ -1,5 +1,8 @@
--- Call netrw
-vim.keymap.set("n", "<C-n>", vim.cmd.Explore)
+-- Enable the oil.nvim file manager
+require("oil").setup()
+
+vim.keymap.set("n", "<C-n>", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 require 'nvim-web-devicons'.setup {
     -- your personnal icons can go here (to override)
     override = {
@@ -33,16 +36,4 @@ require 'nvim-web-devicons'.setup {
             name = "Log"
         }
     },
-}
-
-require 'netrw'.setup {
-    -- Put your configuration here, or leave the object empty to take the default
-    -- configuration.
-    icons = {
-        symlink = '', -- Symlink icon (directory and file)
-        directory = '', -- Directory icon
-        file = '', -- File icon
-    },
-    use_devicons = true, -- Uses nvim-web-devicons if true, otherwise use the file icon specified above
-    mappings = {}, -- Custom key mappings
 }
