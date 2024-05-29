@@ -1,4 +1,4 @@
-require'nvim-treesitter.configs'.setup {
+require 'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
     ensure_installed = {
         "python",
@@ -10,13 +10,26 @@ require'nvim-treesitter.configs'.setup {
         "vimdoc",
         "query"
     },
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+    highlight = { enable = true },
+    indent = { enable = true },
     -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
     auto_install = true,
-    highlight = {
+    incremental_selection = {
         enable = true,
-        additional_vim_regex_highlighting = false,
+        keymaps = {
+            init_selection = "<C-space>",
+            node_incremental = "<C-space>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+        },
+    },
+    textobjects = {
+        move = {
+            enable = true,
+            goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+            goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+            goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer" },
+        },
     },
 }
