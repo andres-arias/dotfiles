@@ -1,5 +1,5 @@
 require('lazy').setup({
-    'marko-cerovac/material.nvim',
+    'folke/tokyonight.nvim',
     'jglasovic/venv-lsp.nvim',
     'mbbill/undotree',
     'tpope/vim-fugitive',
