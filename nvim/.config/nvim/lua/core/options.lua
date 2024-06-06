@@ -28,13 +28,5 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "120"
 vim.opt.clipboard="unnamedplus"
-
-vim.api.nvim_exec([[
-augroup JenkinsfileSyntax
-autocmd!
-autocmd BufReadPost Jenkinsfile set syntax=groovy
-augroup END
-]], false)
-require("yaml_nvim").setup({ ft = { "yaml",  "yml" } })
