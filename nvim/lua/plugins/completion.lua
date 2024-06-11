@@ -6,6 +6,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
 			"saadparwaiz1/cmp_luasnip",
 		},
 		opts = function()
@@ -23,7 +24,7 @@ return {
 					{ name = "path" },
 					{ name = "nvim_lsp_signature_help" },
 					{ name = "nvim_lsp", keyword_length = 1 },
-					{ name = "buffer", keyword_length = 3 },
+					{ name = "buffer", keyword_length = 1 },
 					{ name = "luasnip", keyword_length = 2 },
 				},
 				window = {
