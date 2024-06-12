@@ -14,3 +14,12 @@
     ~/AppData/Local/Packages/Microsoft.WindowsTerminalPreview_8wekyb3d8bbwe/LocalState/settings.json:
       if: "wmic os get Caption | findstr /v Caption" # Check if Windows
       path: windows/settings.json
+
+- link:
+    ~/.config/nvim: nvim
+
+- link:
+    ~/.tmux.conf: .tmux.conf
+
+- link:
+    ~/.zshrc: .zshrc

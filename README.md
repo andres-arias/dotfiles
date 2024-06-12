@@ -1,28 +1,37 @@
 # Personal dotfiles
 Configuration files for my current setup.
 
-Since I use both Windows and macOS on a daily basis, I try to keep a setup
-for both platforms.
+Since I use both Windows and macOS on a daily basis, I try to keep a common setup
+for both platforms. This is possible thanks to [dotbot](https://github.com/anishathalye/dotbot).
 
 ## Requirements
 
 ### macOS
-* GNU stow
-* tmux
 * Zsh
+* tmux
 * Neovim
     * gcc, clang or zig for compiling tree-sitter parsers.
     * Node and npm for installing LSPs.
 
-## Setup
+### Windows
+* Windows Terminal Preview
+* Neovim
+    * gcc, clang or zig for compiling tree-sitter parsers.
+    * Node and npm for installing LSPs.
+
+## Install
 
 ### macOS
 
 ```sh
-brew install stow
-stow zsh
-stow nvim
-stow tmux
+git submodule update --init --recursive
+./install
+```
+
+### Windows
+```powershell
+git submodule update --init --recursive
+./install.ps1
 ```
 
 ## Linux archive
