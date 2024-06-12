@@ -11,6 +11,7 @@ return {
 						"pyright",
 						"ruff_lsp",
 						"lua_ls",
+						"intelephense",
 					},
 				},
 			},
@@ -56,6 +57,23 @@ return {
 							typeCheckingMode = "off",
 							-- Ignore all files for analysis to exclusively use Ruff for linting
 							ignore = { "*" },
+						},
+					},
+				},
+			})
+			lsp.intelephense.setup({
+				capabilities = capabilities,
+				root_dir = lsp.util.root_pattern("composer.json", ".git", "*.php"),
+				settings = {
+					intelephense = {
+						environment = {
+							includePaths = {
+								"C:/TestAutomation/Main/Aphrodite",
+							},
+							phpVersion = "7.1.8",
+						},
+						files = {
+							maxSize = 1000000,
 						},
 					},
 				},
